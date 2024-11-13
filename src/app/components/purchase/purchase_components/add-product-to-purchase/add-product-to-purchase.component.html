@@ -1,0 +1,92 @@
+<form class="my-form container" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="bloc-form">
+            <p>Ajout d'un produit</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Première colonne -->
+                    <div class="d-flex flex-column mb-3">
+                        <div class="d-flex flex-row mb-3 align-items-center">
+                            <label for="productName" class="p-2 label-width">Intitulé Produit:</label>
+                            <select name="productName" id="productName" class="form-control flex-grow-1"
+                                [(ngModel)]="product.product.productName" 
+                                [ngClass]="{ 'is-invalid': submitted && !product.product.productName }" required>
+                                <option value="">Sélectionner un Produit</option>
+                                <option value="Gazouz">Gazouz</option>
+                                <option value="Heineken">Heineken</option>
+                                <option value="Orangina">Orangina</option>
+                            </select>
+                            <div *ngIf="submitted && !product.product.productName" class="invalid-feedback">Veuillez sélectionner un produit</div>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3">
+                            <label for="categoryProduct" class="p-2 label-width">Catégorie Produit:</label>
+                            <select name="categoryProduct" id="categoryProduct" class="form-control flex-grow-1"
+                                [(ngModel)]="product.product.categoryProduct"
+                                [ngClass]="{ 'is-invalid': submitted && !product.product.categoryProduct }" required>
+                                <option value="">Choisir une catégorie</option>
+                                <option value="Boisson">Boisson</option>
+                                <option value="Produits Laitiers">Produits Laitiers</option>
+                            </select>
+                            <div *ngIf="submitted && !product.product.categoryProduct" class="invalid-feedback">Veuillez choisir une catégorie</div>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3">
+                            <label for="description" class="p-2 label-width">Description:</label>
+                            <input name="description" type="text" id="description" class="form-control flex-grow-1"
+                                [(ngModel)]="product.product.description"
+                                 placeholder="Description du produit"
+                                disabled="disabled">
+                        </div>
+
+                        <div class="d-flex flex-row mb-3">
+                            <label for="quantity" class="p-2 label-width">Quantité:</label>
+                            <input name="quantity" type="number" id="quantity" class="form-control flex-grow-1"
+                                [(ngModel)]="product.product.quantity"
+                                [ngClass]="{ 'is-invalid': submitted && !product.product.quantity }"
+                                 placeholder="Saisir une quantité" required>
+                            <div *ngIf="submitted && !product.product.quantity" class="invalid-feedback">Veuillez saisir une quantité</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <!-- Deuxième colonne -->
+                    <div class="d-flex flex-column mb-3">
+                        <div class="d-flex flex-row mb-3 align-items-center">
+                            <label for="currentPurchasePrice" class="p-2 label-width">Prix Achat:</label>
+                            <input name="currentPurchasePrice" type="text" id="currentPurchasePrice"
+                                class="form-control flex-grow-1" [ngModel]="product.currentPurchasePrice | numberFormat"
+                                (ngModelChange)="product.currentPurchasePrice=$event" [ngModelOptions]="{updateOn: 'blur'}"
+                                [ngClass]="{ 'is-invalid': submitted && !product.currentPurchasePrice }"
+                                placeholder="Saisir le prix d'achat" required>
+                            <div *ngIf="submitted && !product.currentPurchasePrice" class="invalid-feedback">Veuillez saisir un montant</div>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3">
+                            <label for="currentSellingPrice" class="p-2 label-width">Prix Vente:</label>
+                            <input name="currentSellingPrice" type="text" id="currentSellingPrice"
+                                class="form-control flex-grow-1" [ngModel]="product.currentSellingPrice | numberFormat"
+                                (ngModelChange)="product.currentSellingPrice=$event" [ngModelOptions]="{updateOn: 'blur'}"
+                                [ngClass]="{ 'is-invalid': submitted && !product.currentSellingPrice }"
+                                placeholder="Saisir le prix de vente" required>
+                            <div *ngIf="submitted && !product.currentSellingPrice" class="invalid-feedback">Veuillez saisir un montant</div>
+                        </div>
+
+                        <div class="d-flex flex-row mb-3">
+                            <label for="taxe" class="p-2 label-width">TVA:</label>
+                            <select id="taxe" name="taxe" class="form-control flex-grow-1" [(ngModel)]="product.taxe"
+                                [ngClass]="{ 'is-invalid': submitted && !product.taxe}" required>
+                                <option *ngFor="let tva of taxe" [value]="tva">{{ tva }}</option>
+                            </select>
+                            <div *ngIf="submitted && !product.taxe" class="invalid-feedback">Veuillez sélectionner une taxe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Ajout Produit</button>
+            </div>
+        </div>
+    </div>
+</form>

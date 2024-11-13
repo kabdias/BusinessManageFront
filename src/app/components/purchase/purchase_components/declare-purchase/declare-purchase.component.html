@@ -1,0 +1,46 @@
+<form class="my-form container" (ngSubmit)="onSubmit()">
+  <div class="bloc-form">
+    <p>Déclarer un achat</p>
+
+    <div class="d-flex flex-row mb-3">
+      <div class="d-flex flex-row mb-3">
+        <label for="buyingDate" class="p-2">Date:</label>
+        <input type="date" id="buyingDate" name="buyingDate" class="form-control flex-grow-1" [(ngModel)]="purchaseForm.buyingDate"
+          [ngClass]="{ 'is-invalid': submitted && !purchaseForm.buyingDate }"  [disabled]="isEdit" />
+        <div *ngIf="submitted && !purchaseForm.buyingDate" class="invalid-feedback">Veuillez saisir une date jj/mm/aaaa
+        </div>
+      </div>
+  
+      <div class="d-flex flex-row mb-3">
+        <label for="providerName" class="p-2">Fournisseur:</label>
+        <input type="text" id="providerName" name="providerName" class="form-control flex-grow-1" [(ngModel)]="purchaseForm.providerName"   [disabled]="isEdit"/>
+      </div>
+  
+      <div class="d-flex flex-row mb-3">
+        <label for="providerAdress" class="p-2">Adresse:</label>
+        <input type="text" id="providerAdress" name="providerAdress" class="form-control flex-grow-1"
+          [(ngModel)]="purchaseForm.providerAddress"  [disabled]="isEdit"/>
+      </div>
+  
+      <div class="d-flex flex-row mb-3">
+        <label for="paymentMode" class="p-2">Mode de paiement:</label>
+        <select id="paymentMode" name="paymentMode" class="form-control flex-grow-1" [(ngModel)]="purchaseForm.paymentMode"  [disabled]="isEdit"
+            [ngClass]="{ 'is-invalid': submitted && !purchaseForm.paymentMode }">
+            <option *ngFor="let mode of paymentModes" [value]="mode">{{ mode }}</option>
+        </select>
+        <div *ngIf="submitted && !purchaseForm.paymentMode" class="invalid-feedback">Veuillez sélectionner un mode de paiement</div>
+      </div>
+
+    </div>
+    
+    <div class="d-flex justify-content-end">
+      <div *ngIf="isEdit">
+        <button type="button" class="btn btn-secondary" (click)="edit()">Editer</button>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </div>
+
+  </div>
+</form>

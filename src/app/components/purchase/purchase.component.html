@@ -1,0 +1,39 @@
+<div class="my-form container">
+    <div class="bloc-form">
+       <app-declare-purchase (purchaseValidated)="onPurchaseValidated($event)"></app-declare-purchase>
+
+      </div>
+
+    <div class="form-spacing"></div>
+
+    <div *ngIf="purchaseValidated">
+      <div class="bloc-form">
+        <app-adding-product (productAdded)="onProductAdded($event)"></app-adding-product>
+      </div>
+
+       <div class="form-spacing"></div>
+       <div class="bloc-form">
+       <app-list-products-add [products]="listeDesProduits"></app-list-products-add>
+       </div>
+    </div>
+</div>
+
+<div class="form-spacing"></div>
+
+<div>
+    <div class="container d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+    </div>
+</div>
+
+<div class="form-spacing"></div>
+
+<div class="container d-flex justify-content-center">
+    <div class="content">
+      </div>
+    <footer class="footer">
+      <p>Copyright &copy; 2024</p>
+      <a href="/">TS-CONSULTING</a>
+    </footer>
+  </div>
+  

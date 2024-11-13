@@ -1,0 +1,26 @@
+<p>Listes des produits</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Produits</th>
+        <th scope="col">Catégories</th>
+        <th scope="col">Description</th>
+        <th scope="col">Prix Achat</th>
+        <th scope="col">Prix Vente</th>
+        <th scope="col">Quantité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of products; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td id="productName-{{i}}">{{ detail.product.productName}}</td>
+        <td id="categoryProduct-{{i}}">{{ detail.product.categoryProduct }}</td>
+        <td id="description-{{i}}">{{ detail.product.description }}</td>
+        <td id="currentPurchasePrice-{{i}}">{{ detail.currentPurchasePrice }}</td>
+        <td id="currentSellingPrice-{{i}}">{{ detail.currentSellingPrice }}</td>
+        <td id="quantity-{{i}}">{{ detail.product.quantity }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
